@@ -138,12 +138,10 @@ function App() {
         <h3 className="subheaders">Rental Services</h3>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ul className="list-1">
-            <li style={{ color: "black" }}>Yard waste and bagged debris</li>
-            <li style={{ color: "black" }}>Roll-Off Dumpster</li>
-            <li style={{ color: "black" }}>Dumpster Rental for Demolitions</li>
-            <li style={{ color: "black" }}>
-              Temporary Roll-Off Dumpsters for Home and Business
-            </li>
+            <li style={{ color: "black" }}>Waste Removal</li>
+            <li style={{ color: "black" }}>Freight Hauler</li>
+            <li style={{ color: "black" }}>Residential Projects</li>
+            <li style={{ color: "black" }}>Commercial Projects</li>
           </ul>
         </div>
         <h3 className="subheaders">Container Sizes Available</h3>
@@ -243,8 +241,8 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div>16931 Cairngale Street</div>
-            <div>Houston, TX 77084</div>
+            <div>11920 Mandy</div>
+            <div>Houston, TX 77050</div>
           </a>
           <strong>Main #:</strong> 832-379-9661
           <br />
