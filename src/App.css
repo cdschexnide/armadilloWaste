@@ -317,7 +317,7 @@ footer {
   text-align: left;
   margin-top: 0px;
   padding-top: 0px;
-  margin-left: 1.5rem;
+  margin-left: 0rem;
   /* margin-right: 0.3rem; */
   font-size: 1.05rem;
 }
@@ -326,7 +326,7 @@ footer {
   text-align: left;
   margin-top: 0px;
   padding-top: 0px;
-  margin-left: 0.3rem;
+  margin-left: 3rem;
   font-size: 1.05rem;
 }
 

@@ -121,18 +121,10 @@ function App() {
         <h3 className="subheaders">Container Sizes Available</h3>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <ul className="list-2">
-            <li style={{ color: "black" }}>
-              15 yard Box container {`(3ft tall x 8ft wide x 12ft long)`}
-            </li>
-            <li style={{ color: "black" }}>
-              20 yard Box container {`(3ft tall x 8ft wide x 22ft long)`}
-            </li>
-            <li style={{ color: "black" }}>
-              30 yard Box container {`(5ft tall x 8ft wide x 22ft long)`}
-            </li>
-            <li style={{ color: "black" }}>
-              40 yard Box container {`(7ft tall x 8ft wide x 22ft long)`}
-            </li>
+            <li style={{ color: "black" }}>15 yard Box container</li>
+            <li style={{ color: "black" }}>20 yard Box container</li>
+            <li style={{ color: "black" }}>30 yard Box container</li>
+            <li style={{ color: "black" }}>40 yard Box container</li>
           </ul>
         </div>
         <h3 className="subheaders">Acceptable Waste</h3>
