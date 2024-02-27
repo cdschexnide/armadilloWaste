@@ -24,7 +24,7 @@ const sendEmail = ({
 
   emailjs
     .send(
-      /* service ID */ "service_v0pfjum",
+      /* service ID */ "service_4jzkimk",
       /* template ID */ "template_zbbzrtd",
       templateParams
     )
@@ -55,10 +55,11 @@ function App() {
     };
     try {
       sendEmail(data);
-      alert("Message sent!");
+      setTimeout(() => alert("Message sent!"), 500);
     } catch (error) {
+      const err = error;
       alert("There was an error sending your message.");
-      console.log("error: ", error);
+      setTimeout(() => alert("Error sending message: " + err), 500);
     }
   }
 
