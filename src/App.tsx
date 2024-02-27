@@ -2,6 +2,41 @@ import { useState } from "react";
 import "./App.css";
 import armadilloLogo from "../src/assets/red-armadillo-logo2.png";
 import truck from "../src/assets/truck.png";
+import emailjs from "emailjs-com";
+
+emailjs.init("ScqJb41MxEET5JTPO"); // Initialize EmailJS with your user ID
+
+// Function to send email
+const sendEmail = ({
+  name,
+  email,
+  message,
+}: {
+  name: string;
+  email: string;
+  message: string;
+}) => {
+  const templateParams = {
+    name,
+    email,
+    message,
+  };
+
+  emailjs
+    .send(
+      /* service ID */ "service_v0pfjum",
+      /* template ID */ "template_zbbzrtd",
+      templateParams
+    )
+    .then(
+      function (response) {
+        console.log("SUCCESS!", response.status, response.text);
+      },
+      function (error) {
+        console.log("FAILED...", error);
+      }
+    );
+};
 
 function App() {
   const [name, setName] = useState<string>("");
@@ -18,34 +53,9 @@ function App() {
       email: email,
       message: message,
     };
-    console.log("name: ", name);
-    console.log("email: ", email);
-    console.log("message: ", message);
     try {
-      // const response = await fetch("/api/sendEmail", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(data),
-      // });
-      const response = await fetch("/api/sendNodemail", {
-        // Update this URL
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      console.log("response: ", response);
-      if (response.ok) {
-        alert("Email sent successfully!");
-        console.log("Email sent successfully");
-      } else {
-        alert("Error sending email.");
-        console.log("Error sending email");
-      }
+      sendEmail(data);
+      alert("Message sent!");
     } catch (error) {
       alert("There was an error sending your message.");
       console.log("error: ", error);
@@ -55,43 +65,6 @@ function App() {
   return (
     <div className="container">
       <header>
-        {/* <h1 style={{ display: "flex", justifyContent: "space-evenly" }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <img
-              style={{ width: 90, height: 50 }}
-              src={armadilloLogo}
-              alt="armadillo logo"
-            />
-            <div style={{ fontSize: "12px", fontWeight: 300, color: "black" }}>
-              Armadillo Waste Inc.
-            </div>
-          </div>
-          Armadillo Waste Inc.
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <img
-              style={{ width: 90, height: 50 }}
-              src={armadilloLogo}
-              alt="armadillo logo"
-            />
-            <div style={{ fontSize: "12px", fontWeight: 300, color: "black" }}>
-              Armadillo Waste Inc.
-            </div>
-          </div>
-        </h1> */}
         <div
           style={{
             display: "flex",
