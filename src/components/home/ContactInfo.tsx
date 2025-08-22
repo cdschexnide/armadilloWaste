@@ -73,16 +73,16 @@ const ContactInfo = () => {
           <div>
             <h4 className="font-semibold text-gray-800 mb-1">Hours of Operation</h4>
             <div className="text-gray-600 space-y-1">
-              <div className="flex justify-between max-w-xs">
-                <span>Monday - Friday:</span>
+              <div>
+                <span>Monday - Friday: </span>
                 <span className="font-medium">{COMPANY_INFO.hours.weekdays}</span>
               </div>
-              <div className="flex justify-between max-w-xs">
-                <span>Saturday:</span>
+              <div>
+                <span>Saturday: </span>
                 <span className="font-medium">{COMPANY_INFO.hours.saturday}</span>
               </div>
-              <div className="flex justify-between max-w-xs">
-                <span>Sunday:</span>
+              <div>
+                <span>Sunday: </span>
                 <span className="font-medium">{COMPANY_INFO.hours.sunday}</span>
               </div>
             </div>

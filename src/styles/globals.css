@@ -6,6 +6,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem; /* Account for fixed header height (h-20 = 5rem + extra padding) */
   }
   
   body {
