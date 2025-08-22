@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-body text-text bg-background;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-red-700 hover:shadow-lg transform hover:-translate-y-0.5;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-primary border-2 border-primary px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-primary hover:text-white;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl;
+  }
+}

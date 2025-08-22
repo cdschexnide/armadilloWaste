@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" width="200" height="100">
+  <g transform="translate(100, 50)">
+    <!-- Armadillo body shape -->
+    <path d="M -60 0 Q -60 -25, -30 -30 Q 0 -32, 30 -30 Q 60 -25, 60 0 Q 60 15, 40 20 L 20 22 L -20 22 L -40 20 Q -60 15, -60 0" 
+          fill="none" 
+          stroke="#C41E3A" 
+          stroke-width="3"/>
+    
+    <!-- Shell pattern -->
+    <path d="M -50 -10 Q -40 -20, -30 -22 M -30 -22 Q -15 -24, 0 -23 M 0 -23 Q 15 -24, 30 -22 M 30 -22 Q 40 -20, 50 -10"
+          fill="none" 
+          stroke="#C41E3A" 
+          stroke-width="2"/>
+    
+    <path d="M -45 0 Q -35 -10, -25 -12 M -25 -12 Q -12 -14, 0 -13 M 0 -13 Q 12 -14, 25 -12 M 25 -12 Q 35 -10, 45 0"
+          fill="none" 
+          stroke="#C41E3A" 
+          stroke-width="2"/>
+    
+    <path d="M -40 10 Q -30 5, -20 3 M -20 3 Q -10 2, 0 2 M 0 2 Q 10 2, 20 3 M 20 3 Q 30 5, 40 10"
+          fill="none" 
+          stroke="#C41E3A" 
+          stroke-width="2"/>
+    
+    <!-- Head -->
+    <circle cx="-65" cy="0" r="8" fill="none" stroke="#C41E3A" stroke-width="2"/>
+    
+    <!-- Tail -->
+    <path d="M 60 0 Q 70 -5, 75 -10" fill="none" stroke="#C41E3A" stroke-width="2"/>
+  </g>
+</svg>
