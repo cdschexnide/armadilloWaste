@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Menu, X, Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { COMPANY_INFO } from '../../utils/constants'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.svg'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

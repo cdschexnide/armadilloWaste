@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronRight, Package, CheckCircle, XCircle, Truck, Home, Building, Recycle } from 'lucide-react'
+import { Package, CheckCircle, XCircle, Truck, Home, Building } from 'lucide-react'
 import Section from '../layout/Section'
 import Card from '../ui/Card'
 import { SERVICES } from '../../utils/constants'
@@ -66,7 +66,7 @@ const Services = () => {
           {/* Rental Services */}
           {activeTab === 'services' && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {SERVICES.rental.map((service, index) => {
+              {SERVICES.rental.map((service) => {
                 const Icon = serviceIcons[service as keyof typeof serviceIcons] || Truck
                 return (
                   <Card key={service} animate>

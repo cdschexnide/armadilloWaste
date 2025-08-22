@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Phone, MapPin, Clock, Mail } from 'lucide-react'
+import { Phone, MapPin, Clock } from 'lucide-react'
 import { COMPANY_INFO } from '../../utils/constants'
 
 const ContactInfo = () => {
