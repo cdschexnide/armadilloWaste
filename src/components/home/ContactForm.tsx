@@ -1,9 +1,11 @@
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
-import { Send } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import Input from '../ui/Input'
 import TextArea from '../ui/TextArea'
 import Button from '../ui/Button'
+import { initEmailJS, sendEmail } from '../../utils/emailjs'
 
 interface FormData {
   name: string
@@ -13,6 +15,9 @@ interface FormData {
 }
 
 const ContactForm = () => {
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [submitMessage, setSubmitMessage] = useState('')
+
   const {
     register,
     handleSubmit,
@@ -20,12 +25,39 @@ const ContactForm = () => {
     reset
   } = useForm<FormData>()
 
+  // Initialize EmailJS when component mounts
+  useEffect(() => {
+    initEmailJS()
+  }, [])
+
   const onSubmit = async (data: FormData) => {
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    console.log('Form submitted:', data)
-    alert('Thank you for your message! We will get back to you soon.')
-    reset()
+    try {
+      setSubmitStatus('idle')
+      setSubmitMessage('')
+      
+      await sendEmail(data)
+      
+      setSubmitStatus('success')
+      setSubmitMessage('Thank you for your message! We will get back to you soon.')
+      reset()
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+        setSubmitMessage('')
+      }, 5000)
+      
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setSubmitStatus('error')
+      setSubmitMessage('Sorry, there was an error sending your message. Please try again or call us directly.')
+      
+      // Clear error message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+        setSubmitMessage('')
+      }, 5000)
+    }
   }
 
   return (
@@ -88,6 +120,26 @@ const ContactForm = () => {
           })}
         />
         
+        {/* Status Messages */}
+        {submitMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`flex items-center space-x-2 p-3 rounded-lg ${
+              submitStatus === 'success' 
+                ? 'bg-green-50 text-green-700 border border-green-200' 
+                : 'bg-red-50 text-red-700 border border-red-200'
+            }`}
+          >
+            {submitStatus === 'success' ? (
+              <CheckCircle size={20} />
+            ) : (
+              <AlertCircle size={20} />
+            )}
+            <span className="text-sm">{submitMessage}</span>
+          </motion.div>
+        )}
+        
         <Button
           type="submit"
           fullWidth
@@ -95,7 +147,10 @@ const ContactForm = () => {
           className="flex items-center justify-center space-x-2"
         >
           {isSubmitting ? (
-            <span>Sending...</span>
+            <>
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              <span>Sending...</span>
+            </>
           ) : (
             <>
               <Send size={18} />
