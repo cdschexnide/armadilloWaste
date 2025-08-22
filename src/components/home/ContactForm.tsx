@@ -15,7 +15,7 @@ interface FormData {
 }
 
 const ContactForm = () => {
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [submitStatus2, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [submitMessage, setSubmitMessage] = useState('')
 
   const {
@@ -126,12 +126,12 @@ const ContactForm = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className={`flex items-center space-x-2 p-3 rounded-lg ${
-              submitStatus === 'success' 
+              submitStatus2 === 'success' 
                 ? 'bg-green-50 text-green-700 border border-green-200' 
                 : 'bg-red-50 text-red-700 border border-red-200'
             }`}
           >
-            {submitStatus === 'success' ? (
+            {submitStatus2 === 'success' ? (
               <CheckCircle size={20} />
             ) : (
               <AlertCircle size={20} />
