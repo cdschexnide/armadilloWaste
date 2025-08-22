@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="bg-secondary text-white">
       <div className="container-custom py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
+          {/* Company Info - */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
               <img src={logo} alt="Armadillo Waste" className="h-10 w-auto filter brightness-0 invert" />
