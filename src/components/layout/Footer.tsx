@@ -22,29 +22,6 @@ const Footer = () => {
               Your trusted partner for waste management solutions in Houston 
               for over {COMPANY_INFO.yearsInBusiness} years.
             </p>
-            <div className="flex space-x-3">
-              <a
-                href="#"
-                aria-label="Facebook"
-                className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
-              >
-                <Facebook size={20} />
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-primary transition-colors"
-              >
-                <Linkedin size={20} />
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
