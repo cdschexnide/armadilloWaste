@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { motion } from 'framer-motion'
 import { Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
@@ -6,6 +6,7 @@ import Input from '../ui/Input'
 import TextArea from '../ui/TextArea'
 import Button from '../ui/Button'
 import { initEmailJS, sendEmail } from '../../utils/emailjs'
+import { formatPhoneNumber, cleanPhoneNumber, isValidPhoneNumber } from '../../utils/phoneFormatter'
 
 interface FormData {
   name: string
@@ -21,6 +22,7 @@ const ContactForm = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitting },
     reset
   } = useForm<FormData>()
@@ -35,7 +37,13 @@ const ContactForm = () => {
       setSubmitStatus('idle')
       setSubmitMessage('')
       
-      await sendEmail(data)
+      // Clean phone number before sending
+      const emailData = {
+        ...data,
+        phone: cleanPhoneNumber(data.phone)
+      }
+      
+      await sendEmail(emailData)
       
       setSubmitStatus('success')
       setSubmitMessage('Thank you for your message! We will get back to you soon.')
@@ -95,18 +103,27 @@ const ContactForm = () => {
           })}
         />
         
-        <Input
-          label="Phone"
-          type="tel"
-          placeholder="(123) 456-7890"
-          error={errors.phone?.message}
-          {...register('phone', {
+        <Controller
+          name="phone"
+          control={control}
+          rules={{
             required: 'Phone number is required',
-            pattern: {
-              value: /^[\d\s\-\(\)]+$/,
-              message: 'Invalid phone number'
-            }
-          })}
+            validate: (value) => isValidPhoneNumber(value) || 'Please enter a valid 10-digit phone number'
+          }}
+          render={({ field: { onChange, value, ...field } }) => (
+            <Input
+              label="Phone"
+              type="tel"
+              placeholder="(123) 456-7890"
+              error={errors.phone?.message}
+              value={formatPhoneNumber(value || '')}
+              onChange={(e) => {
+                const formatted = formatPhoneNumber(e.target.value)
+                onChange(formatted)
+              }}
+              {...field}
+            />
+          )}
         />
         
         <TextArea

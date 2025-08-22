@@ -1,6 +1,6 @@
 import { Phone, MapPin, Clock, ChevronRight, Facebook, Instagram, Linkedin } from 'lucide-react'
 import { COMPANY_INFO, SERVICES } from '../../utils/constants'
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logo.png'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
