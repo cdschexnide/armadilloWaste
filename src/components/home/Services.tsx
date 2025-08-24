@@ -3,16 +3,22 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Package, CheckCircle, XCircle, Truck, Home, Building } from 'lucide-react'
 import Section from '../layout/Section'
 import Card from '../ui/Card'
-import { SERVICES } from '../../utils/constants'
+import { useTranslation, useLanguage } from '../../contexts/LanguageContext'
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState<'services' | 'containers' | 'acceptable' | 'prohibited'>('services')
+  const t = useTranslation()
+  const { language } = useLanguage()
 
-  const serviceIcons = {
+  const serviceIcons: Record<string, any> = {
     'Waste Removal': Truck,
+    'Remoción de Residuos': Truck,
     'Freight Hauler': Package,
+    'Transporte de Carga': Package,
     'Residential Projects': Home,
-    'Commercial Projects': Building
+    'Proyectos Residenciales': Home,
+    'Commercial Projects': Building,
+    'Proyectos Comerciales': Building
   }
 
   return (
@@ -25,20 +31,20 @@ const Services = () => {
         className="text-center mb-12"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
-          Our Services
+          {t('services.title')}
         </h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          Comprehensive waste management solutions for all your needs
+          {t('services.subtitle')}
         </p>
       </motion.div>
 
       {/* Tab Navigation */}
       <div className="flex flex-wrap justify-center gap-2 mb-8">
         {[
-          { key: 'services', label: 'Rental Services' },
-          { key: 'containers', label: 'Container Sizes' },
-          { key: 'acceptable', label: 'Acceptable Waste' },
-          { key: 'prohibited', label: 'Prohibited Items' }
+          { key: 'services', label: t('services.rental.title') },
+          { key: 'containers', label: t('services.containers.title') },
+          { key: 'acceptable', label: t('services.acceptable.title') },
+          { key: 'prohibited', label: t('services.nonAcceptable.title') }
         ].map(tab => (
           <button
             key={tab.key}
@@ -66,10 +72,10 @@ const Services = () => {
           {/* Rental Services */}
           {activeTab === 'services' && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {SERVICES.rental.map((service) => {
-                const Icon = serviceIcons[service as keyof typeof serviceIcons] || Truck
+              {t('services.rental.items').map((service: string, index: number) => {
+                const Icon = serviceIcons[service] || Truck
                 return (
-                  <Card key={service} animate>
+                  <Card key={index} animate>
                     <div className="text-center">
                       <div className="inline-flex items-center justify-center w-16 h-16 bg-primary bg-opacity-10 rounded-full mb-4">
                         <Icon className="text-primary" size={32} />
@@ -78,7 +84,9 @@ const Services = () => {
                         {service}
                       </h3>
                       <p className="text-gray-600">
-                        Professional {service.toLowerCase()} services with competitive pricing
+                        {language === 'es' 
+                          ? `Servicios profesionales de ${service.toLowerCase()} con precios competitivos`
+                          : `Professional ${service.toLowerCase()} services with competitive pricing`}
                       </p>
                     </div>
                   </Card>
@@ -90,18 +98,18 @@ const Services = () => {
           {/* Container Sizes */}
           {activeTab === 'containers' && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {SERVICES.containerSizes.map((container) => (
+              {t('services.containers.sizes').map((container: any) => (
                 <Card key={container.size} animate>
                   <div className="text-center">
                     <div className="text-4xl font-bold text-primary mb-2">
                       {container.size}
                     </div>
                     <div className="text-lg text-gray-600 mb-4">
-                      Cubic Yards
+                      {language === 'es' ? 'Yardas Cúbicas' : 'Cubic Yards'}
                     </div>
                     <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
                       <Package size={16} />
-                      <span>Roll-off Container</span>
+                      <span>{language === 'es' ? 'Contenedor' : 'Roll-off Container'}</span>
                     </div>
                   </div>
                 </Card>
@@ -112,7 +120,7 @@ const Services = () => {
           {/* Acceptable Waste */}
           {activeTab === 'acceptable' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-              {SERVICES.acceptableWaste.map((item) => (
+              {t('services.acceptable.items').map((item: string) => (
                 <motion.div
                   key={item}
                   initial={{ opacity: 0, x: -20 }}
@@ -130,7 +138,7 @@ const Services = () => {
           {/* Prohibited Items */}
           {activeTab === 'prohibited' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-              {SERVICES.nonAcceptableWaste.map((item) => (
+              {t('services.nonAcceptable.items').map((item: string) => (
                 <motion.div
                   key={item}
                   initial={{ opacity: 0, x: -20 }}
@@ -149,8 +157,9 @@ const Services = () => {
                 className="md:col-span-2 mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200"
               >
                 <p className="text-sm text-gray-700">
-                  <strong>Note:</strong> For disposal of prohibited items, please contact your local waste management 
-                  facility or hazardous waste disposal center for proper handling instructions.
+                  <strong>{language === 'es' ? 'Nota:' : 'Note:'}</strong> {language === 'es' 
+                    ? 'Para la eliminación de artículos prohibidos, comuníquese con su instalación local de gestión de residuos o centro de eliminación de residuos peligrosos para obtener instrucciones de manejo adecuadas.'
+                    : 'For disposal of prohibited items, please contact your local waste management facility or hazardous waste disposal center for proper handling instructions.'}
                 </p>
               </motion.div>
             </div>

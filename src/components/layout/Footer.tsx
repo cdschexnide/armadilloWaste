@@ -1,9 +1,10 @@
 import { Phone, MapPin, Clock, ChevronRight } from 'lucide-react'
-import { COMPANY_INFO, SERVICES } from '../../utils/constants'
+import { useTranslation } from '../../contexts/LanguageContext'
 import logo from '../../assets/logo.png'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const t = useTranslation()
 
   return (
     <footer className="bg-secondary text-white">
@@ -14,28 +15,31 @@ const Footer = () => {
             <div className="flex items-center space-x-3 mb-4">
               <img src={logo} alt="Armadillo Waste" className="h-10 w-auto filter brightness-0 invert" />
               <div>
-                <h3 className="text-xl font-bold">Armadillo Waste</h3>
-                <p className="text-xs text-gray-400">Inc.</p>
+                <h3 className="text-xl font-bold">{t('company.name')}</h3>
               </div>
             </div>
             <p className="text-gray-300 text-sm mb-4">
-              Your trusted partner for waste management solutions in Houston 
-              for over {COMPANY_INFO.yearsInBusiness} years.
+              {t('footer.description')}
             </p>
           </div>
 
           {/* Quick Links 2 */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
-              {['Home', 'About', 'Services', 'Contact'].map((link) => (
-                <li key={link}>
+              {[
+                { label: t('nav.home'), href: 'home' },
+                { label: t('nav.about'), href: 'about' },
+                { label: t('nav.services'), href: 'services' },
+                { label: t('nav.contact'), href: 'contact' }
+              ].map((link) => (
+                <li key={link.href}>
                   <a
-                    href={`#${link.toLowerCase()}`}
+                    href={`#${link.href}`}
                     className="text-gray-300 hover:text-primary transition-colors flex items-center group"
                   >
                     <ChevronRight size={16} className="mr-1 group-hover:translate-x-1 transition-transform" />
-                    {link}
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -44,9 +48,9 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Our Services</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('nav.services')}</h4>
             <ul className="space-y-2">
-              {SERVICES.rental.map((service) => (
+              {t('services.rental.items').map((service: string) => (
                 <li key={service}>
                   <a
                     href="#services"
@@ -62,33 +66,33 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
+            <h4 className="text-lg font-semibold mb-4">{t('footer.contactInfo')}</h4>
             <ul className="space-y-3">
               <li className="flex items-start space-x-2">
                 <Phone size={16} className="text-primary mt-1" />
                 <div>
-                  <a href={`tel:${COMPANY_INFO.phone}`} className="text-gray-300 hover:text-primary transition-colors">
-                    {COMPANY_INFO.phone}
+                  <a href={`tel:${t('company.phone')}`} className="text-gray-300 hover:text-primary transition-colors">
+                    {t('company.phone')}
                   </a>
                 </div>
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin size={16} className="text-primary mt-1" />
                 <a
-                  href={COMPANY_INFO.mapsUrl}
+                  href="https://maps.google.com/?q=11920+Mandy+Houston+TX+77050"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-primary transition-colors"
                 >
-                  {COMPANY_INFO.address.street}<br />
-                  {COMPANY_INFO.address.city}, {COMPANY_INFO.address.state} {COMPANY_INFO.address.zip}
+                  {t('company.address.street')}<br />
+                  {t('company.address.city')}, {t('company.address.state')} {t('company.address.zip')}
                 </a>
               </li>
               <li className="flex items-start space-x-2">
                 <Clock size={16} className="text-primary mt-1" />
                 <div className="text-gray-300 text-sm">
-                  <div>M-F: {COMPANY_INFO.hours.weekdays}</div>
-                  <div>Sat: {COMPANY_INFO.hours.saturday}</div>
+                  <div>{t('company.hours.weekdaysLabel')}: {t('company.hours.weekdays')}</div>
+                  <div>{t('company.hours.saturdayLabel')}: {t('company.hours.saturday')}</div>
                 </div>
               </li>
             </ul>
@@ -99,7 +103,7 @@ const Footer = () => {
         <div className="mt-8 pt-8 border-t border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              © {currentYear} Armadillo Waste Inc. All rights reserved.
+              © {currentYear} {t('company.name')}. {t('footer.rights')}
             </p>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-primary transition-colors">

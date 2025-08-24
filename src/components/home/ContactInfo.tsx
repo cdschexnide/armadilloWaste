@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
 import { Phone, MapPin, Clock } from 'lucide-react'
-import { COMPANY_INFO } from '../../utils/constants'
+import { useTranslation } from '../../contexts/LanguageContext'
 
 const ContactInfo = () => {
+  const t = useTranslation()
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -12,10 +13,9 @@ const ContactInfo = () => {
       className="space-y-8"
     >
       <div>
-        <h3 className="text-2xl font-bold text-secondary mb-6">Contact Information</h3>
+        <h3 className="text-2xl font-bold text-secondary mb-6">{t('contact.info.title')}</h3>
         <p className="text-gray-600 mb-8">
-          Get in touch with us for all your waste management needs. 
-          We're here to help with fast, reliable service.
+          {t('contact.infoDescription')}
         </p>
       </div>
 
@@ -30,12 +30,12 @@ const ContactInfo = () => {
             <Phone className="text-primary" size={20} />
           </div>
           <div>
-            <h4 className="font-semibold text-gray-800 mb-1">Phone</h4>
-            <a href={`tel:${COMPANY_INFO.phone}`} className="text-primary hover:underline block">
-              Main: {COMPANY_INFO.phone}
+            <h4 className="font-semibold text-gray-800 mb-1">{t('contact.info.phone')}</h4>
+            <a href={`tel:${t('company.phone')}`} className="text-primary hover:underline block">
+              {t('contact.info.phone')}: {t('company.phone')}
             </a>
-            <a href={`tel:${COMPANY_INFO.officePhone}`} className="text-primary hover:underline block">
-              Office: {COMPANY_INFO.officePhone}
+            <a href={`tel:${t('company.officePhone')}`} className="text-primary hover:underline block">
+              {t('contact.info.officePhone')}: {t('company.officePhone')}
             </a>
           </div>
         </motion.div>
@@ -49,15 +49,15 @@ const ContactInfo = () => {
             <MapPin className="text-primary" size={20} />
           </div>
           <div>
-            <h4 className="font-semibold text-gray-800 mb-1">Office Location</h4>
+            <h4 className="font-semibold text-gray-800 mb-1">{t('contact.info.address')}</h4>
             <a 
-              href={COMPANY_INFO.mapsUrl}
+              href="https://maps.google.com/?q=11920+Mandy+Houston+TX+77050"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-primary transition-colors"
             >
-              {COMPANY_INFO.address.street}<br />
-              {COMPANY_INFO.address.city}, {COMPANY_INFO.address.state} {COMPANY_INFO.address.zip}
+              {t('company.address.street')}<br />
+              {t('company.address.city')}, {t('company.address.state')} {t('company.address.zip')}
             </a>
           </div>
         </motion.div>
@@ -71,19 +71,19 @@ const ContactInfo = () => {
             <Clock className="text-primary" size={20} />
           </div>
           <div>
-            <h4 className="font-semibold text-gray-800 mb-1">Hours of Operation</h4>
+            <h4 className="font-semibold text-gray-800 mb-1">{t('contact.info.hours')}</h4>
             <div className="text-gray-600 space-y-1">
               <div>
-                <span>Monday - Friday: </span>
-                <span className="font-medium">{COMPANY_INFO.hours.weekdays}</span>
+                <span>{t('company.hours.weekdaysLabel')}: </span>
+                <span className="font-medium">{t('company.hours.weekdays')}</span>
               </div>
               <div>
-                <span>Saturday: </span>
-                <span className="font-medium">{COMPANY_INFO.hours.saturday}</span>
+                <span>{t('company.hours.saturdayLabel')}: </span>
+                <span className="font-medium">{t('company.hours.saturday')}</span>
               </div>
               <div>
-                <span>Sunday: </span>
-                <span className="font-medium">{COMPANY_INFO.hours.sunday}</span>
+                <span>{t('company.hours.sundayLabel')}: </span>
+                <span className="font-medium">{t('company.hours.sunday')}</span>
               </div>
             </div>
           </div>
@@ -94,12 +94,12 @@ const ContactInfo = () => {
       <div className="mt-8">
         <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
           <a
-            href={COMPANY_INFO.mapsUrl}
+            href="https://maps.google.com/?q=11920+Mandy+Houston+TX+77050"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary"
           >
-            View on Google Maps
+            {t('common.viewOnMap')}
           </a>
         </div>
       </div>

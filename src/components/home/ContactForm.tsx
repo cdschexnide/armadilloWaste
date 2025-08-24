@@ -7,6 +7,7 @@ import TextArea from '../ui/TextArea'
 import Button from '../ui/Button'
 import { initEmailJS, sendEmail } from '../../utils/emailjs'
 import { formatPhoneNumber, cleanPhoneNumber, isValidPhoneNumber } from '../../utils/phoneFormatter'
+import { useTranslation } from '../../contexts/LanguageContext'
 
 interface FormData {
   name: string
@@ -16,6 +17,7 @@ interface FormData {
 }
 
 const ContactForm = () => {
+  const t = useTranslation()
   const [submitStatus2, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [submitMessage, setSubmitMessage] = useState('')
 
@@ -46,7 +48,7 @@ const ContactForm = () => {
       await sendEmail(emailData)
       
       setSubmitStatus('success')
-      setSubmitMessage('Thank you for your message! We will get back to you soon.')
+      setSubmitMessage(t('contact.form.success'))
       reset()
       
       // Clear success message after 5 seconds
@@ -58,7 +60,7 @@ const ContactForm = () => {
     } catch (error) {
       console.error('Error sending email:', error)
       setSubmitStatus('error')
-      setSubmitMessage('Sorry, there was an error sending your message. Please try again or call us directly.')
+      setSubmitMessage(t('contact.form.error'))
       
       // Clear error message after 5 seconds
       setTimeout(() => {
@@ -76,29 +78,29 @@ const ContactForm = () => {
       viewport={{ once: true }}
       className="bg-white rounded-xl shadow-xl p-8"
     >
-      <h3 className="text-2xl font-bold text-secondary mb-6">Get Free Quote</h3>
+      <h3 className="text-2xl font-bold text-secondary mb-6">{t('common.getQuote')}</h3>
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Input
-          label="Name"
-          placeholder="Your full name"
+          label={t('contact.form.name.label')}
+          placeholder={t('contact.form.name.placeholder')}
           error={errors.name?.message}
           {...register('name', { 
-            required: 'Name is required',
+            required: t('contact.form.name.required'),
             minLength: { value: 2, message: 'Name must be at least 2 characters' }
           })}
         />
         
         <Input
-          label="Email"
+          label={t('contact.form.email.label')}
           type="email"
-          placeholder="your.email@example.com"
+          placeholder={t('contact.form.email.placeholder')}
           error={errors.email?.message}
           {...register('email', { 
-            required: 'Email is required',
+            required: t('contact.form.email.required'),
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Invalid email address'
+              message: t('contact.form.email.invalid')
             }
           })}
         />
@@ -107,14 +109,14 @@ const ContactForm = () => {
           name="phone"
           control={control}
           rules={{
-            required: 'Phone number is required',
-            validate: (value) => isValidPhoneNumber(value) || 'Please enter a valid 10-digit phone number'
+            required: t('contact.form.phone.required'),
+            validate: (value) => isValidPhoneNumber(value) || t('contact.form.phone.invalid')
           }}
           render={({ field: { onChange, value, ...field } }) => (
             <Input
-              label="Phone"
+              label={t('contact.form.phone.label')}
               type="tel"
-              placeholder="(123) 456-7890"
+              placeholder={t('contact.form.phone.placeholder')}
               error={errors.phone?.message}
               value={formatPhoneNumber(value || '')}
               onChange={(e) => {
@@ -127,12 +129,12 @@ const ContactForm = () => {
         />
         
         <TextArea
-          label="Message"
-          placeholder="Tell us about your project..."
+          label={t('contact.form.message.label')}
+          placeholder={t('contact.form.message.placeholder')}
           rows={4}
           error={errors.message?.message}
           {...register('message', { 
-            required: 'Message is required',
+            required: t('contact.form.message.required'),
             minLength: { value: 10, message: 'Message must be at least 10 characters' }
           })}
         />
@@ -166,12 +168,12 @@ const ContactForm = () => {
           {isSubmitting ? (
             <>
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-              <span>Sending...</span>
+              <span>{t('contact.form.submitting')}</span>
             </>
           ) : (
             <>
               <Send size={18} />
-              <span>Send Message</span>
+              <span>{t('contact.form.submit')}</span>
             </>
           )}
         </Button>

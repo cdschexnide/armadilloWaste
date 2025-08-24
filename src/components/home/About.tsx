@@ -1,29 +1,31 @@
 import { motion } from 'framer-motion'
 import { Award, Users, Clock, Truck } from 'lucide-react'
 import Section from '../layout/Section'
-import { COMPANY_INFO } from '../../utils/constants'
+import { useTranslation } from '../../contexts/LanguageContext'
 
 const About = () => {
+  const t = useTranslation()
+  
   const features = [
     {
       icon: Award,
-      title: `${COMPANY_INFO.yearsInBusiness}+ Years`,
-      description: 'Of trusted service in Houston'
+      title: t('about.features.years.title'),
+      description: t('about.features.years.description')
     },
     {
       icon: Users,
-      title: 'Family Owned',
-      description: 'Local business you can trust'
+      title: t('about.features.family.title'),
+      description: t('about.features.family.description')
     },
     {
       icon: Clock,
-      title: 'Fast Response',
-      description: 'Same-day service available'
+      title: t('about.features.response.title'),
+      description: t('about.features.response.description')
     },
     {
       icon: Truck,
-      title: 'Full Service',
-      description: 'Complete waste management solutions'
+      title: t('about.features.service.title'),
+      description: t('about.features.service.description')
     }
   ]
 
@@ -38,12 +40,10 @@ const About = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
-            About Armadillo Waste
+            {t('about.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Armadillo Waste is an independent waste management company, servicing Houston 
-            and surrounding cities for {COMPANY_INFO.yearsInBusiness} years & counting. 
-            We provide comprehensive solutions for full waste removal.
+            {t('about.description')}
           </p>
         </motion.div>
 

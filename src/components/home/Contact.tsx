@@ -1,17 +1,19 @@
 import Section from '../layout/Section'
 import ContactForm from './ContactForm'
 import ContactInfo from './ContactInfo'
+import { useTranslation } from '../../contexts/LanguageContext'
 
 const Contact = () => {
+  const t = useTranslation()
   return (
     <Section id="contact" className="bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
-            Get in Touch
+            {t('contact.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Ready to get started? Contact us today for a free quote on your waste management needs.
+            {t('contact.subtitle')}
           </p>
         </div>
 

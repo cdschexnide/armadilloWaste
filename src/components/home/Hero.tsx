@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion'
 import { ChevronDown, Truck, Shield, DollarSign } from 'lucide-react'
 import Button from '../ui/Button'
-import { COMPANY_INFO } from '../../utils/constants'
+import { useTranslation } from '../../contexts/LanguageContext'
 
 const Hero = () => {
+  const t = useTranslation()
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient */}
@@ -23,11 +24,11 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="text-primary">Armadillo</span> Waste Inc.
+            <span className="text-primary">{t('hero.title')}</span> <span className="text-white">{t('hero.titleAccent')}</span>
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
-            {COMPANY_INFO.tagline}
+            {t('hero.subtitle')}
           </p>
 
           {/* Features */}
@@ -39,7 +40,7 @@ const Hero = () => {
               className="flex items-center space-x-2"
             >
               <Truck className="text-primary" size={24} />
-              <span className="text-lg">Fast Service</span>
+              <span className="text-lg">{t('hero.features.fast')}</span>
             </motion.div>
             
             <motion.div
@@ -49,7 +50,7 @@ const Hero = () => {
               className="flex items-center space-x-2"
             >
               <Shield className="text-primary" size={24} />
-              <span className="text-lg">Reliable</span>
+              <span className="text-lg">{t('hero.features.reliable')}</span>
             </motion.div>
             
             <motion.div
@@ -59,7 +60,7 @@ const Hero = () => {
               className="flex items-center space-x-2"
             >
               <DollarSign className="text-primary" size={24} />
-              <span className="text-lg">Affordable</span>
+              <span className="text-lg">{t('hero.features.affordable')}</span>
             </motion.div>
           </div>
 
@@ -74,7 +75,7 @@ const Hero = () => {
               size="lg"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Get Free Quote
+              {t('hero.cta.primary')}
             </Button>
             <Button
               variant="outline"
@@ -82,7 +83,7 @@ const Hero = () => {
               className="!text-white !border-white hover:!bg-white hover:!text-primary"
               onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              View Services
+              {t('hero.cta.secondary')}
             </Button>
           </motion.div>
         </motion.div>
