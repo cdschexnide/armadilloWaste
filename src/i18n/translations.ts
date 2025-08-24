@@ -62,10 +62,6 @@ export const translations = {
           title: 'Family Owned',
           description: 'Local business you can trust'
         },
-        response: {
-          title: 'Fast Response',
-          description: 'Same-day service available'
-        },
         service: {
           title: 'Full Service',
           description: 'Complete waste management solutions'
@@ -243,10 +239,6 @@ export const translations = {
         family: {
           title: 'Empresa Familiar',
           description: 'Negocio local en el que puede confiar'
-        },
-        response: {
-          title: 'Respuesta Rápida',
-          description: 'Servicio el mismo día disponible'
         },
         service: {
           title: 'Servicio Completo',

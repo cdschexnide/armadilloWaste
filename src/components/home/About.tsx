@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Award, Users, Clock, Truck } from 'lucide-react'
+import { Award, Users, Truck } from 'lucide-react'
 import Section from '../layout/Section'
 import { useTranslation } from '../../contexts/LanguageContext'
 
@@ -16,11 +16,6 @@ const About = () => {
       icon: Users,
       title: t('about.features.family.title'),
       description: t('about.features.family.description')
-    },
-    {
-      icon: Clock,
-      title: t('about.features.response.title'),
-      description: t('about.features.response.description')
     },
     {
       icon: Truck,
@@ -47,7 +42,7 @@ const About = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
